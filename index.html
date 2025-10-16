@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXSHIRTS- PREMIUM</title>
+    <meta name="description" content="Coleções exclusivas de camisetas de luxo, confeccionadas com os melhores materiais e design atemporal.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        /* --- Reset & Base Styles --- */
+        :root {
+            --color-dominant-60: #0D0D0D;   /* 60% */
+            --color-secondary-30: #688C86; /* 30% */
+            --color-accent-10: #F28A2E;     /* 10% */
+            --color-text: #fdfdfd;
+            --color-text-light: #fdfdfd;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-dominant-60);
+            color: var(--color-text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- Header --- */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 25px 0;
+            transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header.scrolled {
+            background-color: rgba(217, 117, 59, 0.95); /* #D9753B com transparência */
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 400;
+            text-decoration: none;
+            color: var(--color-text);
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 45px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background-color: var(--color-accent-10);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hamburger Menu --- */
+        .hamburger-menu {
+            display: none; /* Oculto por padrão */
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+
+        .hamburger-menu span {
+            width: 30px;
+            height: 2px;
+            background-color: var(--color-text);
+            border-radius: 10px;
+            transition: all 0.3s linear;
+            position: relative;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center; 
+            background-color: var(--color-dominant-60);
+            text-align: left;
+        }
+
+        .hero-container {
+            display: flex;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-container > div {
+            flex: 1; /* Faz com que cada item ocupe metade do espaço */
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--color-text);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 45px;
+            background-color: var(--color-accent-10);
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border: 2px solid var(--color-accent-10);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--color-accent-10);
+        }
+
+        /* --- Section Styles --- */
+        .section {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        /* --- Collections Section --- */
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .collection-card {
+            text-align: center;
+        }
+
+        .collection-card__image-wrapper {
+            background-color: #262626; /* Tom mais claro da cor dominante */
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .collection-card__image {
+            width: 100%;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .collection-card:hover .collection-card__image {
+            transform: scale(1.05);
+        }
+
+        .collection-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .collection-card p {
+            color: var(--color-text);
+            font-weight: 300;
+        }
+
+        /* --- About Section --- */
+        .about {
+            background-color: var(--color-secondary-30);
+        }
+        .about-container {
+            display: flex;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-container > div {
+            flex: 1; /* Faz com que cada item ocupe metade do espaço */
+        }
+
+        .about-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--color-text);
+        }
+
+        .about-image-wrapper {
+            height: 500px;
+            overflow: hidden;
+        }
+        .about-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--color-text);
+            color: var(--color-dominant-60);
+            padding: 80px 0 40px;
+            font-weight: 300;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--color-text-light);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: var(--color-dominant-60);
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-text-light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #D9753B;
+            padding-top: 40px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* --- Animations --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+            .about-container {
+                flex-direction: column;
+            }
+            .hero-container {
+                text-align: center;
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .hero p {
+                font-size: 1.2rem; /* Aumenta a fonte no mobile */
+            }
+
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background-color: var(--color-dominant-60);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                transform: translateX(100%);
+                transition: transform 0.4s ease-in-out;
+            }
+
+            .nav-menu.is-open {
+                transform: translateX(0);
+            }
+
+            .nav-menu a {
+                font-size: 1.2rem;
+            }
+
+            .hamburger-menu {
+                display: flex;
+            }
+
+            .hero h1 { font-size: 2.8rem; }
+            .section { padding: 80px 0; }
+            .section-title { font-size: 2.2rem; margin-bottom: 60px; }
+            .container { padding: 0 20px; }
+            .footer-grid { grid-template-columns: 1fr; }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .form-control {
+                /* Garante que os inputs do formulário tenham um bom tamanho */
+                padding: 14px 20px;
+            }
+        }
+
+        /* --- Estilo para o Canvas de Confete --- */
+        #confete {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            pointer-events: none; /* Permite que cliques passem através do canvas */
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== Cabeçalho ========== -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#home" class="logo">LUXSHIRTS</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#collections">Coleções</a></li>
+                    <li><a href="#philosophy">Filosofia</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger-menu" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- ========== Seção Hero ========== -->
+        <section id="home" class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1>A Arte de Vestir-se Bem.</h1>
+                    <p>Descubra camisetas que transcendem o comum. Peças exclusivas, criadas com tecidos nobres e um design que celebra a simplicidade sofisticada.</p>
+                    <a href="#collections" class="cta-button">Explorar Coleção</a>
+                </div>
+                <div class="about-image-wrapper fade-in" style="transition-delay: 200ms;">
+                    <img src="https://i.imgur.com/Vkjtazw.png" alt="Detalhe do tecido de uma camiseta de luxo">
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== Seção Coleções ========== -->
+        <section id="collections" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Coleções Atemporais</h2>
+                <div class="collections-grid">
+                    <div class="collection-card fade-in" style="transition-delay: 100ms;">
+                        <div class="collection-card__image-wrapper">
+                            <img src="https://i.imgur.com/VBDe115.png" alt="Camiseta da coleção Essencial" class="collection-card__image">
+                        </div>
+                        <h3>Coleção Essencial</h3>
+                        <p>A base do guarda-roupa de luxo.</p>
+                    </div>
+                    <div class="collection-card fade-in" style="transition-delay: 200ms;">
+                        <div class="collection-card__image-wrapper">
+                            <img src="https://i.imgur.com/Y2hY9es.png" alt="Camiseta da coleção Monocromática" class="collection-card__image">
+                        </div>
+                        <h3>Coleção Monocromática</h3>
+                        <p>Elegância em tons puros.</p>
+                    </div>
+                    <div class="collection-card fade-in" style="transition-delay: 300ms;">
+                        <div class="collection-card__image-wrapper">
+                            <img src="https://i.imgur.com/VNPdrAO.png" alt="Camiseta da coleção Limitada" class="collection-card__image">
+                        </div>
+                        <h3>Edições Limitadas</h3>
+                        <p>Peças de colecionador.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== Seção Filosofia (Sobre) ========== -->
+        <section id="philosophy" class="section about">
+            <div class="container about-container">
+                <div class="about-text fade-in" style="color: #0D0D0D;">
+                    <h2>Nossa Filosofia</h2>
+                    <p>Aura Threads nasceu do desejo de resgatar a camiseta como uma peça de arte. Acreditamos no poder do minimalismo, na qualidade que se sente ao toque e no design que perdura através das estações.</p>
+                    <p>Cada fio é escolhido a dedo, cada costura é pensada para oferecer um caimento impecável. Não vendemos apenas camisetas, oferecemos uma experiência de luxo discreto e autêntico.</p>
+                </div>
+                <div class="about-image-wrapper fade-in" style="transition-delay: 200ms;">
+                    <img src="https://i.imgur.com/OZljiGg.png" alt="Detalhe do tecido de uma camiseta de luxo">
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== Seção Contato ========== -->
+        <section id="contact-form" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Encontre a loja mais próxima</h2>
+                <div class="row g-3">
+                  <div class="col-sm-7">
+                    <input type="text" class="form-control" placeholder="Cidade" aria-label="Cidade">
+                  </div>
+                  <div class="col-sm">
+                    <input type="text" class="form-control" placeholder="Estado" aria-label="Estado">
+                  </div>
+                  <div class="col-sm">
+                    <input type="text" class="form-control" placeholder="CEP" aria-label="CEP">
+                  </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== Rodapé ========== -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Aura Threads</h4>
+                    <p>A arte de vestir-se bem, redefinida em cada fio. Luxo, conforto e design atemporal.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#collections">Coleções</a></li>
+                        <li><a href="#philosophy">Filosofia</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="#">Fale Conosco</a></li>
+                        <li><a href="#">Trocas e Devoluções</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Social</h4>
+                    <ul>
+                        <li><a href="#" target="_blank">Instagram</a></li>
+                        <li><a href="#" target="_blank">Pinterest</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Aura Threads. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <canvas id="confete"></canvas>
+
+    <script>
+        // Efeito do cabeçalho ao rolar
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Animação de fade-in ao aparecer na tela
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Lógica do Menu Hamburger
+        const hamburger = document.querySelector('.hamburger-menu');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('is-open');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('is-open');
+            });
+        });
+
+        // --- Lógica do Efeito de Confete ---
+        const canvas = document.getElementById('confete');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const config = {
+            particleCount: 80,
+            particleSize: 2,
+            speedMultiplier: 0.9,
+            gravity: 0.07,
+            duration: 200
+        };
+
+        function confettiBurst(x, y) {
+            const pieces = Array.from({ length: config.particleCount }, () => ({
+                x: x,
+                y: y,
+                vx: (Math.random() - 0.5) * 6 * config.speedMultiplier,
+                vy: (Math.random() - 1.2) * 6 * config.speedMultiplier,
+                size: config.particleSize + Math.random() * 3,
+                life: 60 + Math.random() * 40,
+                hue: Math.random() * 360 // Cores variadas
+            }));
+            
+            let frame = 0;
+            
+            function tick() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                for (const p of pieces) {
+                    p.vy += config.gravity;
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.life--;
+                    
+                    if (p.life > 0) {
+                        const opacity = Math.min(1, p.life / 30);
+                        ctx.fillStyle = `hsla(${p.hue}, 90%, 60%, ${opacity})`;
+                        ctx.fillRect(p.x, p.y, p.size, p.size);
+                    }
+                }
+                
+                frame++;
+                if (frame < config.duration) {
+                    requestAnimationFrame(tick);
+                }
+            }
+            
+            requestAnimationFrame(tick);
+        }
+
+        // Acionar ao clicar em qualquer lugar na tela
+        window.addEventListener('click', (e) => {
+            confettiBurst(e.clientX, e.clientY);
+        });
+    </script>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
